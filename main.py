@@ -1,8 +1,10 @@
-# m would be equal to 3
-# eventually we would have m as a parameter to generate strings of length 'm'
-
 alphabet = "abcdefghijklmnopqrstuvwxyz"
+# m - length of strings
+# n - number of strings (size of the array)
+# output -> a generated string (s)
+# the closest string d(s,si) ≤ k (d - Hamming distance)
 
+# eventually we would have m as a parameter to generate strings of length 'm'
 #def generate_input_strings()
 
 # we assume that string1 and string2 have the same length
@@ -30,6 +32,7 @@ def populate_freq_dict(strings, m):
 
 
 def closest_string(strings):
+    # m would be equal to 3
     m = len(strings[0])
     print(strings)
 
@@ -44,6 +47,7 @@ def closest_string(strings):
         char_freqency = 0
     #    for string in strings:
             
+    # print(k)
 
     print(str(chars))
 
@@ -59,6 +63,7 @@ print(generated_string)
 # 3
 # 2
 # 3
+# k would be equal to 3 (should be the smallest for this input)
 
 #i think there could be multiple strings that have the same 'hamming distance'
 #in others word, multiple 'closest string'
