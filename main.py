@@ -17,45 +17,70 @@ def hamming_dist(string1, string2):
 
     return count
 
-def populate_freq_dict(strings, m):
-    chars = {}
-
-    # for i in range(m):
-
+def populate_chars_arr(strings):
+    arr = []
     for string in strings:
         for letter in string:
-            if letter in chars:
-                chars[letter] += 1
+            if letter not in arr:
+                arr.append(letter)
+    return arr;
+
+
+def populate_freq_dict_arr(strings, m):
+    freq_chars_dict_arr = [] 
+
+    for i in range(m):
+        freq_dict = {}
+        for string in strings:
+            if string[i] not in freq_dict:
+                freq_dict[string[i]] = 1
             else:
-                chars[letter] = 1
-    return chars
+                freq_dict[string[i]] += 1
+        freq_chars_dict_arr.append(freq_dict)
+
+    return freq_chars_dict_arr
+
+    # for string in strings:
+    #     for letter in string:
+    #         if letter in freq_chars:
+    #             freq_chars[letter] += 1
+    #         else:
+    #             freq_chars[letter] = 1
+    # return freq_chars
+
 
 
 def closest_string(strings):
     # m would be equal to 3
     m = len(strings[0])
     print(strings)
+    generated_string = ""
+    # for string in strings:
+    #     print(hamming_dist(string, generated_string))
 
-    generated_string = "csta"
-    for string in strings:
-        print(hamming_dist(string, generated_string))
+    freq_dict_arr = populate_freq_dict_arr(strings, m)
+    char_arr = populate_chars_arr(strings)
 
-    chars = populate_freq_dict(strings, m)
+    print(char_arr)
+    print(freq_dict_arr)
 
-    # for letter in string
-    for i in range(m):
-        char_freqency = 0
-    #    for string in strings:
+    for dictionary in freq_dict_arr:
+        highest_freq = 0
+        for letter, value in dictionary.items():
+            if highest_freq < value:
+                highest_freq = value
+
+        for letter, value in dictionary.items():
+            if value == highest_freq:
+                generated_string += letter
             
-    # print(k)
+            print(letter, value)
+        print("highest freq value:" + str(highest_freq))
 
-    print(str(chars))
 
     return generated_string
 
 strings = ["cata", "cota", "sstb"] #csta
-
-
 generated_string = closest_string(strings)
 print(generated_string)
 
@@ -78,15 +103,14 @@ print(generated_string)
 
 # k = 2
 
-# -iterate through alfabets letters
-# -change letter of 'generate_string'
+# [] change letter of 'generate_string'
 # to current letter from alfabet
-# -count of how many times does the letter appear
+# [] count of how many times does the letter appear
 # in the current position of each string
-# -if frequency of the letter in the current
+# [] if frequency of the letter in the current
 # position of 'generated_string' is the biggest
 # we keep the letter in the string.
 # maybe we would have like a dictionary for each
 # position (holy shit, an array of dictionaries)
-# -we print the hamming distance between each
+# [] we print the hamming distance between each
 # string in 'strings' and the generated string
